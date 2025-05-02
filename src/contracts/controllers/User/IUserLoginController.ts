@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
 
-export interface IUserControllerRegister{
+export interface IUserControllerLogin {
     handle(req: Request, resp: Response): Promise<Response>
 } 

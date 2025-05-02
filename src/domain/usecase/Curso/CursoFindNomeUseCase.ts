@@ -13,29 +13,24 @@ export interface Saida {
     mensagem: string;
 }
 
-export class CursofindNomeUseCase implements ICursoFindNomeUseCase<Entrada, Saida> {
+export class CursofindNomeUseCase implements ICursoFindNomeUseCase{
     private cursoRepositoryFindNome: ICursoRepositoryFindNome<ICurso> | undefined;
 
     constructor(cursoRepositoryFindNome: ICursoRepositoryFindNome<ICurso> | undefined) {
         this.cursoRepositoryFindNome = cursoRepositoryFindNome;
     }
 
-    async perform(entrada: Entrada): Promise<Saida> {
-        if (!entrada.id) {
-            throw new Error("ID is required");
+    async perform(id: string, nome: string): Promise<ICurso[]> {
+        if (!id) {
+            throw new Error ("ID is required");
         }
 
-        if (!this.cursoRepositoryFindNome) {
+        if (!nome) {
             throw new Error("Curso repository not initialized");
         }
 
-     
-
-        const curso = await this.cursoRepositoryFindNome.findByNomeCurso(entrada.nomeCurso);
-        if (!curso) {
-            return { sucesso: false, mensagem: "Curso not found" };
-        }
-        return { sucesso: true, mensagem: "Curso found successfully" };
+        return this.cursoRepositoryFindNome?.findByNomeCurso(nome, id) || [];
+        
     }
     
 }

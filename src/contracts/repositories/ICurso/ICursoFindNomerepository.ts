@@ -1,3 +1,3 @@
 export interface ICursoRepositoryFindNome<T>{
-    findByNomeCurso(nomeCurso: string): Promise<T | null>;
+    findByNomeCurso(nomeCurso: string, id: string): Promise<T []>;
 }

@@ -1,3 +1,4 @@
-export interface ICursoFindNomeUseCase<Entrada, Saida> {
-    perform(entrada: Entrada): Promise<Saida>;
+import {ICurso} from "../../../contracts/entities/ICurso";
+export interface ICursoFindNomeUseCase {
+    perform(id: string, nome: string): Promise<ICurso[]>;
 }
