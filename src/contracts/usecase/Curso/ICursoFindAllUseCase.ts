@@ -1,3 +1,5 @@
-export interface ICursoFindAllUseCase<Entrada, Saida> {
+import { Entrada, Saida } from "../../../domain/usecase/Curso/CursoFindAllUseCase";
+
+export interface ICursoFindAllUseCase {
     perform(entrada: Entrada): Promise<Saida>;
 }

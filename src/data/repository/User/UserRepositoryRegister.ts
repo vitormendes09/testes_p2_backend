@@ -8,7 +8,12 @@ export class UserRepositoryRegister implements IUserRepositoryRegister<IUser> {
     }
     
     registerUser(id: string, user: IUser): Promise<void> {
-        return this.userModel.create(user).then(() => {});
+        return this.userModel.create(user)
+        .then(() => {})
+        .catch((error) => {
+            console.error("Error registering user:", error);
+            throw new Error("Error registering user");
+        });
     }
     findByEmail(email: string): unknown {
         return this.userModel.findOne({ email }).exec();

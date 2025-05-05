@@ -5,9 +5,9 @@ import { IUserLoginUseCase } from '../../contracts/usecase/User/IUserLoginuseCas
 
 
 export class UserLoginController implements IUserControllerLogin {
-    private userLoginUseCase: IUserLoginUseCase<{ email: string, password: string }, { success: boolean, message: string, user?: any, token?: string }>;
+    private userLoginUseCase: IUserLoginUseCase;
 
-    constructor(userLoginUseCase: IUserLoginUseCase<{ email: string, password: string }, { success: boolean, message: string, user?: any, token?: string }>) {
+    constructor(userLoginUseCase: IUserLoginUseCase) {
         this.userLoginUseCase = userLoginUseCase;
     }
 

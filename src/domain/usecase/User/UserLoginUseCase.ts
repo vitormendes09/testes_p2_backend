@@ -17,7 +17,7 @@ export interface Saida{
     token? : string;
 }
 
-export class UserLoginUseCase implements IUserLoginUseCase<Entrada, Saida> {
+export class UserLoginUseCase implements IUserLoginUseCase {
 
     private userRepositoryFind: IUserRepositoryFind<IUser>
     constructor( userRepositoryFind: IUserRepositoryFind<IUser>){

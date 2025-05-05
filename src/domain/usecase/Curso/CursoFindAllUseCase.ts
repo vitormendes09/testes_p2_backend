@@ -7,12 +7,13 @@ export interface Entrada {
 }
 
 export interface Saida {
+    [x: string]: any;
     id: string | undefined,
     nomeCurso: string, 
     disciplinas: string[]
 }
 
-export class CursofindAllUseCase implements ICursoFindAllUseCase<Entrada, Saida> {
+export class CursofindAllUseCase implements ICursoFindAllUseCase{
     private cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> | undefined;
 
     constructor(cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> | undefined) {

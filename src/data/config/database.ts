@@ -10,8 +10,7 @@ const dbPassword = process.env.DB_PASSWORD;
 const connectDB = async () => {
     try {
         await mongoose.connect(
-            `mongodb+srv://${dbUser}:${dbPassword}@cluster0.ayo8cdl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
-            { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions
+            `mongodb+srv://vitor:yBHuSvQM5Qiffgpp@cluster0.ayo8cdl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
         );
         console.log('MongoDB connected');
     } catch (error) {

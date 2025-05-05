@@ -16,7 +16,7 @@ export interface Saida{
     user?: IUser| null;
     token? : string;
 }
-export class UserRegisterUseCase implements IUserRegisterUseCase<Entrada, Saida> {
+export class UserRegisterUseCase implements IUserRegisterUseCase {
     private userRepositoryRegister: IUserRepositoryRegister<IUser>
 
     constructor (userRepositoryRegister: IUserRepositoryRegister<IUser>){

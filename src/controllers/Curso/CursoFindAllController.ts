@@ -1,15 +1,14 @@
 import {Request, Response} from 'express';
 import { ICursoFindAllController } from '../../contracts/controllers/Curso/ICursoFindAllController';
 import { ICursoFindAllUseCase } from '../../contracts/usecase/Curso/ICursoFindAllUseCase';
-import { ICurso } from '../../contracts/entities/ICurso';   
-import { ICursoRepositoryFindAll } from '../../contracts/repositories/ICurso/ICursoFindAllRepository';
+
 
 export class CursoFindAllController implements ICursoFindAllController {
-    private cursoFindAllUseCase: ICursoFindAllUseCase<{ id: string }, ICurso[]>;
-    private cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> | undefined;
+    private cursoFindAllUseCase: ICursoFindAllUseCase
+  
 
-    constructor(cursoFindAllUseCase: ICursoFindAllUseCase<{ id: string }, ICurso[]>, cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> | undefined) {
-        this.cursoRepositoryFindAll = cursoRepositoryFindAll;
+    constructor(cursoFindAllUseCase: ICursoFindAllUseCase) {
+      
         this.cursoFindAllUseCase = cursoFindAllUseCase;
     }
 
@@ -21,7 +20,7 @@ export class CursoFindAllController implements ICursoFindAllController {
                 return;
             }
             const cursos = await this.cursoFindAllUseCase.perform({ id });
-            if (!cursos || cursos.length === 0) {
+            if (!cursos || cursos.disciplinas.length === 0) {
                 res.status(404).json({ error: "Curso not found" });
                 return;
             }

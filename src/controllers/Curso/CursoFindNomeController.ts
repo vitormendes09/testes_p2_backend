@@ -6,9 +6,9 @@ import { ICursoRepositoryFindNome } from '../../contracts/repositories/ICurso/IC
 
 export class CursoFindNomeController implements ICursoFindNomeController {
     private cursoFindNomeUseCase: ICursoFindNomeUseCase
-    private cursoRepositoryFindNome: ICursoRepositoryFindNome<ICurso> | undefined;
-    constructor(cursoFindNomeUseCase: ICursoFindNomeUseCase, cursoRepositoryFindNome: ICursoRepositoryFindNome<ICurso> | undefined) {
-        this.cursoRepositoryFindNome = cursoRepositoryFindNome;
+  
+    constructor(cursoFindNomeUseCase: ICursoFindNomeUseCase) {
+       
         this.cursoFindNomeUseCase = cursoFindNomeUseCase;
     }
 

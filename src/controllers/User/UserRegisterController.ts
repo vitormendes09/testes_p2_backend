@@ -4,9 +4,9 @@ import { IUserRegisterUseCase } from "../../contracts/usecase/User/IUserRegister
 import { z } from "zod";
 
 export class UserRegisterController implements IUserRegisterController {
-    private userRegisterUseCase: IUserRegisterUseCase<{ name: string, email: string, password: string }, { success: boolean, message: string, user?: any, token?: string }>;
+    private userRegisterUseCase: IUserRegisterUseCase;
 
-    constructor(userRegisterUseCase: IUserRegisterUseCase<{ name: string, email: string, password: string }, { success: boolean, message: string, user?: any, token?: string }>) {
+    constructor(userRegisterUseCase: IUserRegisterUseCase) {
         this.userRegisterUseCase = userRegisterUseCase;
     }
 
@@ -18,7 +18,15 @@ export class UserRegisterController implements IUserRegisterController {
                 password: z.string().min(6)
             });
 
-            const { name, email, password } = schema.parse(req.body);
+            const pared = schema.safeParse(req.body);
+            console.log("Dados recebidos para registro:", req.body);
+            
+            if (!pared.success) {
+                return res.status(400).json({ error: "Invalid input", issues: pared.error.issues });
+            }
+            const { name, email, password } = pared.data;
+
+            console.log("Dados recebidos para registro:", req.body);
 
             const result = await this.userRegisterUseCase.perform({ name, email, password });
 
@@ -32,4 +40,6 @@ export class UserRegisterController implements IUserRegisterController {
             return res.status(500).json({ error: "Internal server error" });
         }
     }
-}
+} 
+
+
