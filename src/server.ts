@@ -1,4 +1,5 @@
 import express from 'express';
+import 'dotenv/config';
 
 import UserLoginRouter from './infra/routes/User/UserLoginRouter';
 import UserRegisterRouter from './infra/routes/User/UserRegisterRouter';

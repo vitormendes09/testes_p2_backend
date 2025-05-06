@@ -5,15 +5,18 @@ import { ICursoFindAllController } from "../../../contracts/controllers/Curso/IC
 import { CursoFindAllController } from "../../../controllers/Curso/CursoFindAllController";
 import { CursofindAllUseCase } from "../../../domain/usecase/Curso/CursoFindAllUseCase";
 import { CursoFindAllRepository } from "../../../data/repository/Curso/CursoFindAllrepository";
-import { Curso } from "../../../domain/entities/Curso"; // Ensure this is the Mongoose model
+import { CursoModel } from "../../../data/models/Curso";
 import connectDB from "../../../data/config/database";
 
 
 export async function CursoFindAllFactory(){
-
-    await connectDB();
-    
-    const cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> = new CursoFindAllRepository(Curso as any);
+    try {
+        await connectDB();
+    } catch (err) {
+        console.error("Erro ao conectar ao banco:", err);
+        throw err;
+    }
+    const cursoRepositoryFindAll: ICursoRepositoryFindAll<ICurso> = new CursoFindAllRepository(CursoModel);
     const cursoUsecase: ICursoFindAllUseCase = new CursofindAllUseCase(cursoRepositoryFindAll);
     const cursoController: ICursoFindAllController = new CursoFindAllController(cursoUsecase);
     return cursoController;

@@ -1,10 +1,10 @@
 ### 🔐 Login de Usuário
-POST http://localhost:3000//apiuser/login
+POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "usuario@email.com",
-  "password": "suaSenhaAqui"
+  "email": "bia@example.com",
+  "password": "123456"
 }
 
 ###
@@ -14,18 +14,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "name": "João",
-  "email": "joao@example.com",
+  "name": "Beatriz",
+  "email": "bia@example.com",
   "password": "123456"
 }
 
 ###
 
 ### 📚 Buscar todos os cursos
-GET http://localhost:3333/curso/findall
+GET http://localhost:3000/api/curso/findall
 
 ###
 
 ### 🔎 Buscar curso por nome
-GET http://localhost:3333/curso/findnome?nome=Engenharia
-
+GET http://localhost:3000/api/curso/findnome?nome=Engenharia de Software

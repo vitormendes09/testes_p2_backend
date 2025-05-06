@@ -20,16 +20,14 @@ export class CursofindNomeUseCase implements ICursoFindNomeUseCase{
         this.cursoRepositoryFindNome = cursoRepositoryFindNome;
     }
 
-    async perform(id: string, nome: string): Promise<ICurso[]> {
-        if (!id) {
-            throw new Error ("ID is required");
-        }
+    async perform( nome: string): Promise<ICurso[]> {
+     
 
         if (!nome) {
             throw new Error("Curso repository not initialized");
         }
 
-        return this.cursoRepositoryFindNome?.findByNomeCurso(nome, id) || [];
+        return this.cursoRepositoryFindNome?.findByNomeCurso(nome) || [];
         
     }
     

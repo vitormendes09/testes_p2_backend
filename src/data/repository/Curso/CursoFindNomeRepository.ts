@@ -6,8 +6,8 @@ import { ICursoRepositoryFindNome } from "../../../contracts/repositories/ICurso
 export class CursoFindNomeRepository implements ICursoRepositoryFindNome<ICurso>{
     constructor(private cursoModel: Model<ICurso>){}
    
-    findByNomeCurso(nomeCurso: string, id: string): Promise<ICurso[]> {
-       return this.cursoModel.find({ nomeCurso: nomeCurso, id: id }).exec();
+    findByNomeCurso(nomeCurso: string): Promise<ICurso[]> {
+       return this.cursoModel.find({ nomeCurso: nomeCurso}).exec();
     }
    
 }

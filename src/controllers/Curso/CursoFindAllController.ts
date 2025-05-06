@@ -14,20 +14,15 @@ export class CursoFindAllController implements ICursoFindAllController {
 
     async handle(req: Request, res: Response): Promise<void> {
         try {
-            const { id } = req.body;
-            if (!id) {
-                res.status(400).json({ error: "ID is required" });
-                return;
-            }
-            const cursos = await this.cursoFindAllUseCase.perform({ id });
-            if (!cursos || cursos.disciplinas.length === 0) {
-                res.status(404).json({ error: "Curso not found" });
-                return;
-            }
-            res.status(200).json(cursos);
-        } catch (error) {
-            console.error("Error in CursoFindNomeController:", error);
-            res.status(500).json({ error: "Internal server error" });
+            const cursos = await this.cursoFindAllUseCase.perform();
+        if (!cursos || cursos.length === 0) {
+            res.status(404).json({ error: "No courses found" });
+            return;
         }
+        res.status(200).json(cursos);
+    } catch (error) {
+        console.error("Error in CursoFindAllController:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
     }
 }

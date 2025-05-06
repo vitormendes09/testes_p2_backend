@@ -20,31 +20,14 @@ export class CursofindAllUseCase implements ICursoFindAllUseCase{
         this.cursoRepositoryFindAll = cursoRepositoryFindAll;
     }
 
-    async perform(entrada: Entrada): Promise<Saida> {
-        if (!entrada.id) {
-            throw new Error("ID is required");
-        }
-
+    async perform(): Promise<ICurso[]> {
         if (!this.cursoRepositoryFindAll) {
             throw new Error("Curso repository not initialized");
         }
 
         const cursos = await this.cursoRepositoryFindAll.findAll();
-        if (!cursos || cursos.length === 0) {
-            throw new Error("Curso not found");
-        }
+        return cursos;
 
-        const curso = cursos[0]; 
-        if (curso.id !== entrada.id) {
-            throw new Error("Curso not found");
-        }   
-        const saida: Saida = {
-            id: curso.id,
-            nomeCurso: curso.nomeCurso,
-            disciplinas: curso.disciplinas,
-        };
-
-        return saida;
     }
     
 }

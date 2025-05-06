@@ -10,8 +10,9 @@ export class AuthService {
             email: user.email,
             name: user.name,
         };
-
-        return jwt.sign(payload, SECRET, { expiresIn: '1h' });
+        return jwt.sign(payload, process.env.JWT_SECRET!, {
+            expiresIn: "1d",
+          });
     }
 
     static verifyToken(token: string): IUser | null {

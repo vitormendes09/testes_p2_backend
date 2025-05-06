@@ -1,5 +1,4 @@
-import { Entrada, Saida } from "../../../domain/usecase/Curso/CursoFindAllUseCase";
-
+import { ICurso } from "../../../contracts/entities/ICurso"
 export interface ICursoFindAllUseCase {
-    perform(entrada: Entrada): Promise<Saida>;
+    perform(): Promise<ICurso[]>;
 }

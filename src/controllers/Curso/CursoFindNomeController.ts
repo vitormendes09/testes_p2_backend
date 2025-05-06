@@ -14,11 +14,11 @@ export class CursoFindNomeController implements ICursoFindNomeController {
 
     async handle(req: Request, res: Response): Promise<Response> {
         try{
-            const {id, nome} = req.body;
-            if (!id || !nome) {
-                return res.status(400).json({ error: "ID is required" });
+            const { nome} = req.query;
+            if ( !nome) {
+                return res.status(400).json({ error: "Nome do curso é obrigatório" });
             }
-            const cursos = await this.cursoFindNomeUseCase.perform( id, nome);
+            const cursos = await this.cursoFindNomeUseCase.perform( String(nome));
             if (!cursos || cursos.length === 0) {
                 return res.status(404).json({ error: "Curso not found" });
             }
